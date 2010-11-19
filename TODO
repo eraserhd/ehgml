@@ -1,0 +1,84 @@
+ehgml TODO
+------------------------------------------------------------------------------
+
+- `apply' operator needs to push/pop environment (gml spec says that vars 
+  bound within a closure aren't global - need a local symbol table).  The
+  issue here is the unexpected behavior of `5 /x 10 { /x x cos } apply', so
+  we might have to watch for binders when parsing the closure.
+  Another note: check how nested closures behave, and how they should behave.
+
+- Use some kind of threading system.  Garbage collect asynchronously.
+
+- Expose matrix objects, vector objects (as point objects?) to gml scripts.
+
+- Operator for dumping a model to pov-ray source.  Should probably determine
+  filename extension to `render' operator and output the appropriate type of
+  image or source - e.g. `.png' will write a png, `.pov' will write pov-ray
+  source, etc.
+
+- Surface mapping on cone is incorrect. (or normals?)
+
+- Make stack and heap use CObject * instead of TObjectRef<CObject>, since we
+  can implement reference counting for objects on stack or heap more cheaply
+  than calling constructor/destructor.
+
+ehgml DONE list
+------------------------------------------------------------------------------
+
+- Surface mapping for spheres - *ugh*  DONE! -JMF 2000/08/30
+
+- Rewrite value/gc system, keep a list of active objects which will function
+  sort of like a heap, still use mark and sweep, but derive everything from
+  a basic CObject class with gc capabilities.  Type information should be
+  done via C++ RTTI.  This is more extensible and maintainable.
+  DONE! - JMF 2000/09/04
+
+- Implement lighting!
+  DONE! - JMF 2000/09/01
+
+- Tier-2 from docs/task.ps:
+  - `cone' - DONE! - JMF 2000/09/07
+  - `cube' - DONE! - JMF 2000/09/07
+  - `cylinder' - DONE! - JMF 2000/09/06
+  - `pointlight' - DONE! - JMF 2000/09/04
+
+- Fix sphere modelling to translate ray to local coordinates (will solve
+  problem with missing ``stretch'' when `scale' is used).
+  DONE! - JMF 2000/09/07
+
+- CHitInfo method (or CModel method) to check against the distance, since we
+  aren't translating that from world coordinates.
+  DONE! - JMF 2000/09/10 - specific test per model.
+
+- Collapse (with macros, classes, every c++ trick in the book) the hit_test ()
+  and shadow_hit_test () methods into one method.  Add functionality so that
+  we can add a list of hits (both enters and exits) for CSG modelling if so
+  desired, or we can optimize for the closest hit (for normal modelling) if
+  so desired, or for any hit (for shadow rays).
+  DONE! - JMF 2000/09/08
+
+- Tier-3 from docs/task.ps
+  - `difference' - DONE! -JMF 2000/09/09
+  - `intersect' - DONE! -JMF 2000/09/10
+  - `spotlight' - DONE! -JMF 2000/09/11
+
+- Track filename and line numbers of tokens for error messages.  Use exceptions
+  for error messages so that we have proper unwind semantics and a cleaner
+  interface.
+  Also, replace ``assert'' with a method for throwing exceptions - the user
+  can define an assert function if he wishes.
+  DONE! - JMF 2000/09/12
+
+- Need some way to make sure that points which are at the same distance along
+  the ray stay in the proper order when sorting/inserted/etc.
+  DONE! - JMF 2000/09/12
+
+- Profiler indicates a good portion of the execution time is spent constructing
+  and destroying CPoint objects.  Use the GNU c++ `return' extension (named
+  return values, from g++ info page) to avoid a constructor call when possible.
+  Do this with macros so we can still compile on non-gcc targets.
+  DONE! - JMF 2000/09/12
+
+- Optimizations for when we don't need all points (when not doing CSG up the
+  chain in the model).
+  DONE! - JMF 2000/09/12

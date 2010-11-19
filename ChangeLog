@@ -1,0 +1,71 @@
+Wednesday, September  4, 2002  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* src/op.cc: Per kloepper, ofstream constructor needs ios::binary
+	  flag on Windows and DOS, but otherwise works under Mingw32!
+
+Wednesday, September 13, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Replaced string `CScalar::sval' with char *.  Saves 4 bytes per
+	  scalar (since this is part of the union), as well as construction/
+	  destruction call.
+	* Implemented `CModel::do_csg_hits' and `CModel::enable_csg_hits' so
+	  we can drop hits when we know we already have a closer one when
+	  not doing CSG.
+	* Hacked a lot of the models to not test for hits further than 
+	  currently known hits.
+	* Fixed some places where we exit(1) instead of assert on an error
+	  (now throws an exception).
+	* Catch exceptions in main() and display the error message.
+	* Released 0.2!
+
+Tuesday, September 12, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Deleted CScalar::aval member (not used).
+	* Implemented CGmlError exception-derived class.  Replaced many 
+	  asserts.
+	* Fixed sphere hit test to reject reflections hitting self (when not
+	  a shadow hit).
+	* Added `sort' to CHit object as second key for sorting so we can
+	  keep enter and exit hits which are at the same distance in the
+	  proper order.
+	* Added `macros.hh' files and now (conditionally) use g++ named
+	  return value extension to avoid some constructor calls.
+
+Monday, September 11, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Implemented spotlights.
+	* Fixed issue with using always-zero intersection () value for
+	  pointlight calculations.
+
+Monday, September 11, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Fix issues with cylinder and cone.  (cone is still a little funky,
+	  still investigating).
+	* Released 0.1!
+
+Sunday, September 10, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Add `intersect' operator.
+	* Fix issues with distance of hit not scaled to local coordinates when
+	  testing shadow hits.
+
+Saturday, September 9, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Restructure CHitInfo to accept multiple hits, add all hits to
+	  info structure in CModel, add CSG support.
+	* Add `difference' operator.
+
+Thursday, September 7, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Implement cylinder and cone primitives.
+
+Wednesday, September 6, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Heap now pre-allocates slots to avoid problems with certain -lstdc++
+	* Rewrote (again) heap/gc for *big* performance gain.
+
+Tuesday, September 5, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Found new source of information about calculating matrix inverses,
+	  implemented (corrected some issues).
+	* Implemented `cube' primitive.
+	* Begin implementing `cylinder' primitive.
+
+Monday, September 4, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Implemented point lights.
+
+Saturday, September 2, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Rewrote gc to have more modular types.
+
+Wednesday, August 30, 2000  Jay 'Eraserhead' Felice <jfelice@cronosys.com>
+	* Packaged up with automake/autoconf, tagged version 0.1.

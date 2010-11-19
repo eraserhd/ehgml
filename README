@@ -1,0 +1,13 @@
+ehgml README
+------------------------------------------------------------------------------
+
+ehgml is Eraserhead GML, a GML interpreter/ray-tracer which was implemented
+for the Third Annual ICFP programming contest.
+
+Well, I didn't quite make the contest deadline (I submitted *something* tho ;-)
+but I did have quite a bit of fun with this.  Hopefully, someone else can
+find this work useful and/or interesting.  Mostly the latter I suspect.
+
+The program accepts a GML script on standard input and writes zero or more
+PPM files as instructed by the source with the `render' command.
+

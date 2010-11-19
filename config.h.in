@@ -1,0 +1,29 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if lex declares yytext as a char * by default, not a char[].  */
+#undef YYTEXT_POINTER
+
+/* Define this to enable debug features. */
+#undef DEBUG
+
+/* Define this to disable asserts. */
+#undef NDEBUG
+
+/* Define this if your c++ compiler supports named return values (only g++?) */
+#undef HAVE_NAMED_RETURN_VALUES
+
+/* Define if you have the strtod function.  */
+#undef HAVE_STRTOD
+
+/* Define if you have the m library (-lm).  */
+#undef HAVE_LIBM
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+
