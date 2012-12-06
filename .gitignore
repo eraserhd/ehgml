@@ -4,7 +4,6 @@ config.cache
 config.log
 config.status
 Makefile
-install-sh
 ehgml
 ehgml-*.tar.gz
 stamp-h
